@@ -1,8 +1,10 @@
-﻿cont Vue = require("vue/dist/vue.js")
+﻿import Vue from 'vue'
+import App from './App.vue'
 
-const v = new Vue({
+new Vue({
   el: '#app',
-  data: {
-    message: 'Hello Vue.js!'
+  render: h => h(App),
+  components: {
+    App
   }
 })
