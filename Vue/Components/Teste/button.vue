@@ -1,6 +1,6 @@
 ﻿<template>
     <div>
-        <button class="btn btn-primary">HAHA</button>
+        <button class="btn btn-primary">{{valor}}</button>
     </div>
 </template>
 <script>
@@ -8,6 +8,7 @@
         name: 'app',
         data() {
             return {
+                valor: false
             }
         }
     }

@@ -9,6 +9,24 @@ function getFolders(dir) {
       return fs.statSync(path.join(dir, file)).isDirectory();
     });
 }
+//const scriptsPath = 'Components';
+
+//function getPaths() {
+//  var folders = getFolders(scriptsPath);
+//  return folders.map(function (folder) {
+//    var file = scriptsPath + "//" + folder + "//main.js";
+//    return file;
+//  });
+//}
+
+//function getOutputPaths() {
+//  var folders = getFolders(scriptsPath);
+//  return folders.map(function (folder) {
+//    var file = ".dist//" + folder;
+//    return file;
+//  });
+//}
+
 module.exports = {
   entry: './Scripts/main.js',
   output: {

@@ -8,8 +8,16 @@
         name: 'app',
         data() {
             return {
-                msg: 'Welcome '
+                msg: 'Welcome ',
+                teste : []
+
             }
+        },
+        mounted() {
+            this.teste.push(1);
+            this.teste.push(2);
+            this.teste.push(3);
+            this.teste.push(4);
         }
     }
 </script>
