@@ -13,6 +13,13 @@ var source = require('vinyl-source-stream');
 var buffer = require('vinyl-buffer');
 var es2015 = require('babel-preset-es2015');
 
+const aliasifyConfig = {
+  aliases: {
+    'vue$': 'vue/dist/vue.js'
+  },
+  verbose: true
+}
+
 function getFolders(dir) {
   return fs.readdirSync(dir)
     .filter(function (file) {

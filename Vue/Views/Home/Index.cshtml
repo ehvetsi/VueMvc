@@ -4,13 +4,16 @@
 
 <h2>Index</h2>
 
-<script src="~/node_modules/vue/dist/vue.min.js"></script>
+<div id="app">
+    {{message}}
+</div>
+<div id="teste">
+    {{message}}
+</div>
 
-<script>
-    const v = new Vue({
-        el: '#app',
-        data: {
-            message: 'Hello Vue.js!'
-        }
-    })
-</script>
+@{
+    var controllerName = HttpContext.Current.Request.RequestContext.RouteData.Values["Controller"].ToString().ToLower();
+}
+
+<script src='~/Scripts/app/@controllerName/bundle.js'></script>
+@*<script src="~/node_modules/vue/dist/vue.min.js"></script>*@
