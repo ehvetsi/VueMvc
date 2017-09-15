@@ -9,12 +9,6 @@ function getFolders(dir) {
       return fs.statSync(path.join(dir, file)).isDirectory();
     });
 }
-var folders = getFolders('./ViewModels');
-//gutil.log(folders);
-//folders.map(function (folder) {
-//  compileJS(scriptsPath + "//" + folder + "//main.js", "Scripts//app//" + folder);
-//});
-
 module.exports = {
   entry: './Scripts/main.js',
   output: {

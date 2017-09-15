@@ -1,6 +1,6 @@
 ﻿<template>
     <div>
-        <button>Teste</button>
+        <button class="btn btn-primary">HAHA</button>
     </div>
 </template>
 <script>
@@ -8,7 +8,6 @@
         name: 'app',
         data() {
             return {
-                msg: 'Welcome to Your Vue.js App'
             }
         }
     }
