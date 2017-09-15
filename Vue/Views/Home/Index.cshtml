@@ -11,9 +11,4 @@
     {{message}}
 </div>
 
-@{
-    var controllerName = HttpContext.Current.Request.RequestContext.RouteData.Values["Controller"].ToString().ToLower();
-}
-
-<script src='~/Scripts/app/@controllerName/bundle.js'></script>
 @*<script src="~/node_modules/vue/dist/vue.min.js"></script>*@

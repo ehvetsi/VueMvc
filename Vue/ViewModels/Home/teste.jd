@@ -4,5 +4,13 @@ const v = new Vue({
   el: '#teste',
   data: {
     message: 'Testando Vue.js!'
+  },
+  methods: {
+    teste() {
+      var a = [];
+      a.forEach(d => {
+        d = 1;
+      })
+    }
   }
 })

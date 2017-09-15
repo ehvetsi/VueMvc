@@ -35,6 +35,11 @@
 
     <script src="~/Scripts/jquery-1.10.2.min.js"></script>
     <script src="~/Scripts/bootstrap.min.js"></script>
+    @{
+        var controllerName = HttpContext.Current.Request.RequestContext.RouteData.Values["Controller"].ToString().ToLower();
+    }
+
+    <script src='~/Scripts/app/@controllerName/bundle.js'></script>
     @RenderSection("scripts", required: false)
 </body>
 </html>
