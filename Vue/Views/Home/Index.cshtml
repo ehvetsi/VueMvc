@@ -1,63 +1,104 @@
 ﻿@using Newtonsoft.Json;
-@{
-    ViewBag.Title = "Index";
+@using Kendo.Mvc.UI;
+@{ ViewBag.Title = "Index";
     var teste = new List<string>();
     teste.Add("1");
     teste.Add("2");
     teste.Add("3");
     teste.Add("4");
 }
-
-@*<script src="~/Scripts/kendo/2014.1.318/jquery.min.js"></script>
-    <script src="~/Scripts/kendo/2014.1.318/kendo.core.min.js"></script>
-    <script src="~/Scripts/kendo/2014.1.318/kendo.grid.min.js"></script>*@
 <h2>Index</h2>
-<div>
-    <App v-for="itens of @JsonConvert.SerializeObject(teste)"></App>
-    <Btn v-else></Btn>
-</div>
+<script src="~/Scripts/kendo/2015.3.1111/jquery.min.js"></script>
+<script src="~/Scripts/kendo/2015.3.1111/kendo.all.min.js"></script>
+<script src="~/Scripts/kendo/2015.3.1111/kendo.aspnetmvc.min.js"></script>
 
-@*<div id="example">
-        <div id="grid"></div>
-        <script>
-            $(document).ready(function () {
-                $("#grid").kendoGrid({
-                    dataSource: {
-                        type: "odata",
-                        transport: {
-                            read: "https://demos.telerik.com/kendo-ui/service/Northwind.svc/Customers"
-                        },
-                        pageSize: 20
-                    },
-                    height: 550,
-                    groupable: true,
-                    sortable: true,
-                    pageable: {
-                        refresh: true,
-                        pageSizes: true,
-                        buttonCount: 5
-                    },
-                    columns: [{
-                        template: "<div class='customer-photo'" +
-                        "style='background-image: url(../content/web/Customers/#:data.CustomerID#.jpg);'></div>" +
-                        "<div class='customer-name'>#: ContactName #</div>",
-                        field: "ContactName",
-                        title: "Contact Name",
-                        width: 240
-                    }, {
-                        field: "ContactTitle",
-                        title: "Contact Title"
-                    }, {
-                        field: "CompanyName",
-                        title: "Company Name"
-                    }, {
-                        field: "Country",
-                        width: 150
-                    }]
-                });
-            });
-        </script>
-    </div>*@
+<script src="~/Scripts/kendo/2015.3.1111/kendo.data.signalr.min.js"></script>
+
+<script>
+    var hub,
+        hubStart;
+
+    $(function () {
+        var hubUrl = "https://demos.telerik.com/kendo-ui/service/signalr/hubs";
+        var connection = $.hubConnection(hubUrl, { useDefaultPath: false });
+        hub = connection.createHubProxy("productHub");
+        hubStart = connection.start({ jsonp: true });
+    });
+
+    function onPush(e) {
+        var notification = $("#notification").data("kendoNotification");
+        notification.success(e.type);
+    }
+</script>
+
+@*    <inputmask type="text" name="@Model.Nome" classes="form-control" label="Nome do cliente"></inputmask>*@
+
+@(Html.Kendo().Notification()
+      .Name("notification")
+      .Width("100%")
+      .Position(position => position.Top(0).Left(0))
+)
+
+@(Html.Kendo().Grid<Vue.Models.ClienteVM>()
+    .Name("grid")
+    .Columns(c =>
+    {
+        c.Bound(x => x.Nome);
+        c.Bound(x => x.Email);
+    })
+    .Scrollable()
+        .Groupable()
+        .Sortable()
+        .DataSource(x => x.SignalR()
+            .AutoSync(true)
+            .Events(events => events.Push("onPush"))
+            .Transport(tr => tr
+                .Promise("hubStart")
+                .Hub("hub")
+            ))
+
+            @*
+                <div id="example">
+                    <div id="grid"></div>
+                    <script>
+                        $(document).ready(function () {
+                            $("#grid").kendoGrid({
+                                dataSource: {
+                                    type: "odata",
+                                    transport: {
+                                        read: "https://demos.telerik.com/kendo-ui/service/Northwind.svc/Customers"
+                                    },
+                                    pageSize: 20
+                                },
+                                height: 550,
+                                groupable: true,
+                                sortable: true,
+                                pageable: {
+                                    refresh: true,
+                                    pageSizes: true,
+                                    buttonCount: 5
+                                },
+                                columns: [{
+                                    template: "<div class='customer-photo'" +
+                                    "style='background-image: url(../content/web/Customers/#:data.CustomerID#.jpg);'></div>" +
+                                    "<div class='customer-name'>#: ContactName #</div>",
+                                    field: "ContactName",
+                                    title: "Contact Name",
+                                    width: 240
+                                }, {
+                                    field: "ContactTitle",
+                                    title: "Contact Title"
+                                }, {
+                                    field: "CompanyName",
+                                    title: "Company Name"
+                                }, {
+                                    field: "Country",
+                                    width: 150
+                                }]
+                            });
+                        });
+                    </script>
+                </div>*@
 
 <script src="~/dist/build.js">
 </script>

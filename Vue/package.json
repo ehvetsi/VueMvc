@@ -10,7 +10,6 @@
     "build-prod": "cross-env NODE_ENV=production webpack --progress --hide-modules"
   },
   "dependencies": {
-    "vee-validate": "^2.0.0-rc.17",
     "vue": "^2.3.3"
   },
   "devDependencies": {

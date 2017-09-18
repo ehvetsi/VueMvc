@@ -1,6 +1,6 @@
 ﻿<template>
     <div>
-        {{msg}}
+        <slot name="content"></slot>
     </div>
 </template>
 <script>
@@ -9,7 +9,8 @@
         data() {
             return {
                 msg: 'Welcome ',
-                teste : []
+                teste : [],
+                nome:"Jão"
 
             }
         },
