@@ -39,7 +39,7 @@
         var controllerName = HttpContext.Current.Request.RequestContext.RouteData.Values["Controller"].ToString().ToLower();
     }
 
-    <script src='~/Scripts/app/@controllerName/bundle.js'></script>
+    <script src='~/Scripts/app/@controllerName/main.js'></script>
     @RenderSection("scripts", required: false)
 </body>
 </html>

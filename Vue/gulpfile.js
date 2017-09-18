@@ -12,6 +12,7 @@ const fsPath = require('fs-path');
 var source = require('vinyl-source-stream');
 var buffer = require('vinyl-buffer');
 var es2015 = require('babel-preset-es2015');
+var vueify = require('gulp-vueify');
 
 const aliasifyConfig = {
   aliases: {
@@ -97,5 +98,19 @@ gulp.task('default', function () {
   gutil.log(folders);
   folders.map(function (folder) {
     watchFolder(scriptsPath + "//" + folder + "//main.js", "Scripts//app//" + folder);
+  });
+});
+
+function fvueify(input, output) {
+  return gulp.src(input)
+    .pipe(vueify())
+    .pipe(gulp.dest(output));
+}
+
+gulp.task('vueify', function () {
+  var folders = getFolders(scriptsPath);
+  gutil.log(folders);
+  folders.map(function (folder) {
+    fvueify(scriptsPath + "//**/*.vue", "Scripts//app//" + folder);
   });
 });
