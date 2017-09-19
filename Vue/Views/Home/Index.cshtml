@@ -9,75 +9,20 @@
     teste.Add("4");
 }
 
-@*<script src="~/Scripts/kendo/2014.1.318/jquery.min.js"></script>
-    <script src="~/Scripts/kendo/2014.1.318/kendo.core.min.js"></script>
-    <script src="~/Scripts/kendo/2014.1.318/kendo.grid.min.js"></script>*@
 
 <script src="~/Scripts/jquery.validate.min.js"></script>
 <script src="~/Scripts/jquery.validate.unobtrusive.min.js"></script>
 <h2>Index</h2>
 
 
-<div>
-    <App></App>
-    <Btn></Btn>
-</div>
+@using (Html.BeginForm())
+{
+
+    <App :validations="@JsonConvert.SerializeObject(Html.GetUnobtrusiveValidationAttributes("LastName"))"></App>
+
+    @Html.ValidationMessageFor(c => c.LastName)
+}
 
 
-<vue-dotnet-validator-group inline-template>
-    <form asp-controller="Account" asp-action="Register" method="post" v-on:submit="validate">
-        <Validator value="@Model.LastName" inline-template>
-            <span asp-validation-for="LastName" ref="message"></span>
-            <input type="text" asp-for="LastName" ref="field" v-model="val" />
-        </Validator>
-        <button type="submit">Register</button>
-    </form>
-</vue-dotnet-validator-group>
+<script src="~/dist/build.js"></script>
 
-@*<div id="example">
-        <div id="grid"></div>
-        <script>
-            $(document).ready(function () {
-                $("#grid").kendoGrid({
-                    dataSource: {
-                        type: "odata",
-                        transport: {
-                            read: "https://demos.telerik.com/kendo-ui/service/Northwind.svc/Customers"
-                        },
-                        pageSize: 20
-                    },
-                    height: 550,
-                    groupable: true,
-                    sortable: true,
-                    pageable: {
-                        refresh: true,
-                        pageSizes: true,
-                        buttonCount: 5
-                    },
-                    columns: [{
-                        template: "<div class='customer-photo'" +
-                        "style='background-image: url(../content/web/Customers/#:data.CustomerID#.jpg);'></div>" +
-                        "<div class='customer-name'>#: ContactName #</div>",
-                        field: "ContactName",
-                        title: "Contact Name",
-                        width: 240
-                    }, {
-                        field: "ContactTitle",
-                        title: "Contact Title"
-                    }, {
-                        field: "CompanyName",
-                        title: "Company Name"
-                    }, {
-                        field: "Country",
-                        width: 150
-                    }]
-                });
-            });
-        </script>
-    </div>*@
-
-<script src="~/dist/build.js">
-</script>
-
-<script>
-</script>

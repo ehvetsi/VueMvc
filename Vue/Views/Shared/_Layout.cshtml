@@ -37,7 +37,10 @@
         </footer>
     </div>
 
-
     @RenderSection("scripts", required: false)
+    @*@{
+        var controllerName = HttpContext.Current.Request.RequestContext.RouteData.Values["Controller"].ToString();
+    }
+    <script src="~/dist/@(controllerName).js">*@
 </body>
-</html>
+</html >

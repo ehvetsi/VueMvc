@@ -9,6 +9,11 @@ namespace Vue.Models
     public class ClienteVM
     {
         [Required]
+        [Display(Name = "Idade")]
+        public int Age { get; set; }
+
+        [Required]
+        [Display(Name = "Sobrenome")]
         public string LastName { get; set; }
     }
 }

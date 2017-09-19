@@ -1,26 +1,22 @@
-﻿import Vue from 'vue/dist/vue.min.js'
-import App from '../Components/Home/App.vue'
-import Btn from '../Components/Teste/button.vue'
-import dotnetValidator from '../node_modules/vue-dotnet-validator/dist/index.js';
+﻿import Vue from 'vue/dist/vue.min.js';
+import App from '../Components/Home/App.vue';
+import '@progress/kendo-ui';
+import { KendoCalendar } from '@progress/kendo-dateinputs-vue-wrapper';
+import { KendoMaskedTextBox, KendoInputsInstaller } from '@progress/kendo-inputs-vue-wrapper'
+import { KendoValidator, KendoLayoutInstaller } from '@progress/kendo-layout-vue-wrapper'
 
+Vue.use(KendoLayoutInstaller)
+Vue.use(KendoInputsInstaller)
+Vue.component(KendoCalendar.name, KendoCalendar)
 
-
-var vm=new Vue({
+new Vue({
   el: '#app',
   components: {
     App,
-    Btn,
-    validator: dotnetValidator.validator(),
-    vueDotnetValidatorGroup: dotnetValidator.validatorGroup
+    KendoCalendar,
+    KendoMaskedTextBox,
+    KendoValidator
   }
 })
-
-console.log(vm)
-//vm.components = {
-//  app,
-//  Btn,
-//  ValidatorGroup: dotnetValidator.validatorGroup,
-//  Validator: dotnetValidator.validator()
-//}
 
 Vue.config.devtools = true

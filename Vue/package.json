@@ -10,6 +10,12 @@
     "build-prod": "cross-env NODE_ENV=production webpack --progress --hide-modules"
   },
   "dependencies": {
+    "@progress/kendo-buttons-vue-wrapper": "2017.3.1-beta.4",
+    "@progress/kendo-dateinputs-vue-wrapper": "^2017.3.914",
+    "@progress/kendo-inputs-vue-wrapper": "^2017.3.914",
+    "@progress/kendo-layout-vue-wrapper": "^2017.3.914",
+    "@progress/kendo-theme-default": "^2.41.1",
+    "@progress/kendo-ui": "2017.2.621",
     "vee-validate": "^2.0.0-rc.17",
     "vue": "^2.3.3",
     "vue-dotnet-validator": "^0.3.12"

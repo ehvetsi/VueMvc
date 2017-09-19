@@ -28,6 +28,16 @@ function getFolders(dir) {
 //}
 
 module.exports = {
+  //entry: {
+  //  'home': './Components/Home/main.js',
+  //  'teste': './Components/Teste/main.js'
+  //},
+  //output: {
+  //  path: path.resolve(__dirname, './dist'),
+  //  filename: '[name].js',
+  //  libraryTarget: 'umd'
+  //},
+
   entry: './Scripts/main.js',
   output: {
     path: path.resolve(__dirname, './dist'),

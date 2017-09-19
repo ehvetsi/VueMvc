@@ -12,7 +12,9 @@ namespace Vue.Controllers
         // GET: Home
         public ActionResult Index()
         {
-            return View(new ClienteVM());
+            var model = new ClienteVM();
+            model.LastName = "teste";
+            return View(model);
         }
     }
 }
