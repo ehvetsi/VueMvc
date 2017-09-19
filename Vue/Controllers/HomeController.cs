@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using Vue.Models;
 
 namespace Vue.Controllers
 {
@@ -11,7 +12,7 @@ namespace Vue.Controllers
         // GET: Home
         public ActionResult Index()
         {
-            return View();
+            return View(new ClienteVM());
         }
     }
 }

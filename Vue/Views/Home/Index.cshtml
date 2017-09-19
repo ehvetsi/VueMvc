@@ -1,4 +1,5 @@
 ﻿@using Newtonsoft.Json;
+@model Vue.Models.ClienteVM
 @{
     ViewBag.Title = "Index";
     var teste = new List<string>();
@@ -11,11 +12,27 @@
 @*<script src="~/Scripts/kendo/2014.1.318/jquery.min.js"></script>
     <script src="~/Scripts/kendo/2014.1.318/kendo.core.min.js"></script>
     <script src="~/Scripts/kendo/2014.1.318/kendo.grid.min.js"></script>*@
+
+<script src="~/Scripts/jquery.validate.min.js"></script>
+<script src="~/Scripts/jquery.validate.unobtrusive.min.js"></script>
 <h2>Index</h2>
+
+
 <div>
-    <App v-for="itens of @JsonConvert.SerializeObject(teste)"></App>
-    <Btn v-else></Btn>
+    <App></App>
+    <Btn></Btn>
 </div>
+
+
+<vue-dotnet-validator-group inline-template>
+    <form asp-controller="Account" asp-action="Register" method="post" v-on:submit="validate">
+        <Validator value="@Model.LastName" inline-template>
+            <span asp-validation-for="LastName" ref="message"></span>
+            <input type="text" asp-for="LastName" ref="field" v-model="val" />
+        </Validator>
+        <button type="submit">Register</button>
+    </form>
+</vue-dotnet-validator-group>
 
 @*<div id="example">
         <div id="grid"></div>

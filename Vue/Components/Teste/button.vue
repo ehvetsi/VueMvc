@@ -5,7 +5,7 @@
 </template>
 <script>
     export default {
-        name: 'app',
+        name: 'btn',
         data() {
             return {
                 valor: false
