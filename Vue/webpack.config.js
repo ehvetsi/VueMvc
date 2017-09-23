@@ -5,45 +5,36 @@ const fs = require('fs');
 function getFolders(dir) {
   return fs.readdirSync(dir)
     .filter(function (file) {
-      console.log(file)
       return fs.statSync(path.join(dir, file)).isDirectory();
     });
 }
-//const scriptsPath = 'Components';
+const scriptsPath = 'Components';
 
-//function getPaths() {
-//  var folders = getFolders(scriptsPath);
-//  return folders.map(function (folder) {
-//    var file = scriptsPath + "//" + folder + "//main.js";
-//    return file;
-//  });
-//}
-
-//function getOutputPaths() {
-//  var folders = getFolders(scriptsPath);
-//  return folders.map(function (folder) {
-//    var file = ".dist//" + folder;
-//    return file;
-//  });
-//}
+var obj = {};
+function getOutputPaths() {
+  var folders = getFolders(scriptsPath);
+  return folders.map(function (folder) {
+    var file = "./Components/" + folder + "/" + folder + ".js";
+    obj[folder] = file;
+    return file;
+  });
+}
+getOutputPaths();
 
 module.exports = {
-  //entry: {
-  //  'home': './Components/Home/main.js',
-  //  'teste': './Components/Teste/main.js'
-  //},
-  //output: {
-  //  path: path.resolve(__dirname, './dist'),
-  //  filename: '[name].js',
-  //  libraryTarget: 'umd'
-  //},
-
-  entry: './Scripts/main.js',
+  entry: obj,
   output: {
     path: path.resolve(__dirname, './dist'),
-    publicPath: '/dist/',
-    filename: 'build.js'
+    filename: '[name].js',
+    libraryTarget: 'umd'
   },
+
+  //entry: './Scripts/main.js',
+  //output: {
+  //  path: path.resolve(__dirname, './dist'),
+  //  publicPath: '/dist/',
+  //  filename: 'build.js'
+  //},
   module: {
     rules: [
       {

@@ -9,20 +9,24 @@
     teste.Add("4");
 }
 
-
 <script src="~/Scripts/jquery.validate.min.js"></script>
 <script src="~/Scripts/jquery.validate.unobtrusive.min.js"></script>
 <h2>Index</h2>
 
-
-@using (Html.BeginForm())
+@using (Html.BeginForm("","",FormMethod.Post))
 {
-
-    <App :validations="@JsonConvert.SerializeObject(Html.GetUnobtrusiveValidationAttributes("LastName"))"></App>
-
+    @*v-bind="@JsonConvert.SerializeObject(Html.GetUnobtrusiveValidationAttributes("LastName"))"*@
+    <input type="text" name="email" v-model="email"/>
+    <span v-show="errors.has('email')">{{ errors.first('email') }}</span>
     @Html.ValidationMessageFor(c => c.LastName)
+
+    <input type="button" value="Envia" @@click="onSubmit($event)"/>
 }
 
+<style scoped>
+    .error{
+        color:red
+    }
+</style>
 
-<script src="~/dist/build.js"></script>
-
+<script src="~/dist/Home.js"></script>
